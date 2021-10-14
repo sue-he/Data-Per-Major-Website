@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Salary</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}"/>
+</head>
+
+
+<body>
+
+<header class="title">
+  <a href={{ url_for('homepage') }}>
+  <img border="0" alt="EduStat: Every Stat for Every Major"
+  src="{{ url_for('static', filename='edustat_logo.png') }}" id="fixed-width-image"></a>
+</header>
+
+<nav class="topnav">
+    <div class = "dropdown">
+    <a class="active" href={{ url_for('majors') }} onfocus="displaySubMenu()" onmouseover = "displaySubMenu()" onmouseout = "ditchSubMenu()">Majors</a>
+    <div class="dropdown-content" id="dropdown-content" onmouseover = "displaySubMenu()" onmouseout = "ditchSubMenu()">
+        <a id = "dummylink" href="#" tabindex="2">Test</a>
+        {% for major in majors %}
+            <a href={{ url_for('get_major_info', major=major) }}>{{ major }}</a>
+        {% endfor %}
+    </div>
+  </div>
+  <a href={{ url_for('salary') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">Salary</a>
+  <a href={{ url_for('popularity') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">Popularity</a>
+  <a href={{ url_for('about_the_data') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">About the Data</a>
+
+</nav>
+
+<section>
+  <h2>Salary</h2>
+</section>
+
+<p>The minimum salary found in the database is <b>$34950</b> and the maximum salary in the database is <b>$69980</b></p>
+
+<form action="/salary_results" method="POST">
+  <fieldset>
+    <legend><h3>Salary Range:</h3></legend>
+    <label for="minimum">Minimum:</label><br>
+    $<input type="text" id="minimum" name="minimum" placeholder="input minimum.." value=34950><br>
+    <label for="maximum">Maximum:</label><br>
+    $<input type="text" id="maximum" name="maximum" placeholder="input maximum.." value=69980><br><br>
+    <input type="submit" value="Submit">
+    <input type="reset">
+  </fieldset>
+</form>
+
+<p><b>The range you selected is:</b></p>
+<p>{{ salary_output }}</p>
+
+<section>
+  <h2>Majors</h2>
+  <ul style="list-style-type:none;">
+    {% for major in salary_major_list %}
+        <li> <a href={{ url_for('get_major_info', major=major) }}>{{ major }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+
+<script>
+    function displaySubMenu() {
+        document.getElementById("dummylink").style.display = "none";
+        document.getElementById("dropdown-content").style.display = "block";
+    }
+    function ditchSubMenu() {
+       document.getElementById("dropdown-content").style.display = "none";
+    }
+</script>
+
+</body>
+
+
+</html>

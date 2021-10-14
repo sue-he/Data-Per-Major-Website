@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Majors</title>
+  <meta charset="UTF-8">
+ <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+
+
+<body>
+
+<header class="title">
+  <a href={{ url_for('homepage') }}>
+  <img border="0" alt="EduStat: Every Stat for Every Major"
+  src="{{ url_for('static', filename='edustat_logo.png') }}" id="fixed-width-image"></a>
+</header>
+
+<nav class="topnav">
+
+    <div class = "dropdown">
+    <a class="active" href={{ url_for('majors') }} onfocus="displaySubMenu()" onmouseover = "displaySubMenu()" onmouseout = "ditchSubMenu()">Majors</a>
+    <div class="dropdown-content" id="dropdown-content" onmouseover = "displaySubMenu()" onmouseout = "ditchSubMenu()">
+        <a id = "dummylink" href="#" tabindex="2">Test</a>
+        {% for major in majors %}
+            <a href={{ url_for('get_major_info', major=major) }}>{{ major }}</a>
+        {% endfor %}
+    </div>
+  </div>
+  <a href={{ url_for('salary') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">Salary</a>
+  <a href={{ url_for('popularity') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">Popularity</a>
+  <a href={{ url_for('about_the_data') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">About the Data</a>
+
+</nav>
+
+<section>
+  <h2>Majors</h2>
+  <ul style="list-style-type:none;">
+    {% for major in majors %}
+        <li> <a href={{ url_for('get_major_info', major=major) }}>{{ major }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+
+
+<script>
+    function displaySubMenu() {
+        document.getElementById("dummylink").style.display = "none";
+        document.getElementById("dropdown-content").style.display = "block";
+    }
+    function ditchSubMenu() {
+       document.getElementById("dropdown-content").style.display = "none";
+    }
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>About the Data</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}"/>
+</head>
+
+
+<body>
+
+<header class="title">
+  <a href={{ url_for('homepage') }}>
+  <img border="0" alt="EduStat: Every Stat for Every Major"
+  src="{{ url_for('static', filename='edustat_logo.png') }}" id="fixed-width-image"></a>
+</header>
+
+<nav class="topnav">
+
+    <div class = "dropdown">
+    <a class="active" href={{ url_for('majors') }} onfocus="displaySubMenu()" onmouseover = "displaySubMenu()" onmouseout = "ditchSubMenu()">Majors</a>
+    <div class="dropdown-content" id="dropdown-content" onmouseover = "displaySubMenu()" onmouseout = "ditchSubMenu()">
+        <a id = "dummylink" href="#" tabindex="2">Test</a>
+        {% for major in majors %}
+            <a href={{ url_for('get_major_info', major=major) }}>{{ major }}</a>
+        {% endfor %}
+    </div>
+  </div>
+  <a href={{ url_for('salary') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">Salary</a>
+  <a href={{ url_for('popularity') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">Popularity</a>
+  <a href={{ url_for('about_the_data') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">About the Data</a>
+
+</nav>
+
+<article>
+  <h2>About the Data</h2>
+
+  <h4>Names of the Datasets </h4>
+  <p>1. Number, percentage distribution, unemployment rates, and median earnings of 25- to 29-year-old bachelor’s degree holders and percentage of degree holders among all 25- to 29-year-olds, by field of study and science, technology, engineering, or mathematics (STEM) status of field: 2010 and 2017.</p>
+  <p>   Click <a href="https://nces.ed.gov/programs/digest/d18/tables/dt18_505.10.asp">here</a> to see the original dataset.</p>
+  <p>2. Bachelor's degrees conferred to males by postsecondary institutions, by race/ethnicity and field of stud: 2015-16 and 2016-17.</p>
+  <p>   Click <a href="https://nces.ed.gov/programs/digest/d18/tables/dt18_322.40.asp">here</a> to see the original dataset.</p>
+  <p>3. Bachelor's degrees conferred to females by postsecondary institutions, by race/ethnicity and field of study: 2015-16 and 2016-17.</p>
+  <p>   Click <a href="https://nces.ed.gov/programs/digest/d18/tables/dt18_322.50.asp">here</a> to see the original dataset.</p>
+  <p>4. Number of postsecondary institutions conferring degrees, by control of institution, level of degree, and field of study: 2016-17.</p>
+  <p>   Click <a href="https://nces.ed.gov/programs/digest/d18/tables/dt18_318.60.asp?current=yes">here</a> to see the original dataset.</p>
+
+  <h4>Coverage of the Dataset</h4>
+  <p>1. Covers the aforementioned in both 2010 and 2017, within different majors and from a sample of 25-29 year olds within the United States.</p>
+  <p>2. Covers the male popularity of each major conferred by postsecondary institutions in 2015-16 and 2016-17 within the United States.</p>
+  <p>3. Covers the female popularity of each major conferred by postsecondary institutions in 2015-16 and 2016-17 within the United States.</p>
+  <p>4. Covers the numbers of different kinds of institutions by majors in 2016-17 within the United States.</p>
+
+  <h4>Authorship</h4>
+  <p>Posted by the National Center for Education Statistics, and the data is provided by the U.S. Department of Commerce, Census Bureau. </p>
+  <h4>Term of Use</h4>
+  <p>The only restrictions, as outlined <a href="https://ies.ed.gov/funding/researchaccess.asp">here</a>, are only applicable to researchers funded by a federal grant. Otherwise, there are no restrictions.</p>
+</article>
+
+<script>
+    function displaySubMenu() {
+        document.getElementById("dummylink").style.display = "none";
+        document.getElementById("dropdown-content").style.display = "block";
+    }
+    function ditchSubMenu() {
+       document.getElementById("dropdown-content").style.display = "none";
+    }
+</script>
+
+</body>
+
+</html>

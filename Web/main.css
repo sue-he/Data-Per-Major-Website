@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  background-color: #F0F8FF;
+  font-family: Arial;
+  background-image: url("us_map.png");
+  background-attachment: fixed;
+}
+
+.title {
+  overflow: hidden;
+  background-color: #F0F8FF;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #6495ED;
+}
+
+.topnav a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 18px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #699CFA;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #00008B;
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+  margin-right: 16px;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.main{
+  overflow: hidden;
+  padding-bottom: 0px;
+
+}
+
+.text{
+  font-size: 40px;
+  font-weight: 200px;
+  max-width: 550px;
+  color: ivory;
+  position: relative;
+  left: 100px;
+  padding-top: 50px;
+  padding-bottom: 250px;
+  letter-spacing: 7px;
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;
+  }
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.title #fixed-width-image { width: 20%; height: auto;}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+{% macro title(major) -%}
+    {{ major }}
+{%- endmacro %}
+<head>
+  <title>Statistics for {{ title(major) }} majors</title>
+  <meta charset="UTF-8">
+ <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+
+<body>
+
+<header class="title">
+  <a href={{ url_for('homepage') }}>
+  <img border="0" alt="EduStat: Every Stat for Every Major"
+  src="{{ url_for('static', filename='edustat_logo.png') }}" id="fixed-width-image"></a>
+</header>
+
+<nav class="topnav">
+    <div class = "dropdown">
+    <a class="active" href={{ url_for('majors') }} onfocus="displaySubMenu()" onmouseover = "displaySubMenu()" onmouseout = "ditchSubMenu()">Majors</a>
+    <div class="dropdown-content" id="dropdown-content" onmouseover = "displaySubMenu()" onmouseout = "ditchSubMenu()">
+        <a id = "dummylink" href="#" tabindex="2">Test</a>
+        {% for major in majors %}
+            <a href={{ url_for('get_major_info', major=major) }}>{{ major }}</a>
+        {% endfor %}
+    </div>
+  </div>
+  <a href={{ url_for('salary') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">Salary</a>
+  <a href={{ url_for('popularity') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">Popularity</a>
+  <a href={{ url_for('about_the_data') }} onfocus="ditchSubMenu()" onmouseover = "ditchSubMenu()">About the Data</a>
+
+</nav>
+
+<h1>{{ major }}</h1>
+<section>
+  <h2>Salary</h2>
+  <ul style="list-style-type:none;">
+    The average salary in 2017 for <b>{{ major }}</b> majors was <b>${{ major_salary }}</b>.
+  </ul>
+</section>
+
+<section>
+  <h2>Popularity</h2>
+  <ul style="list-style-type:none;">
+    The number of <b>{{ major }}</b> majors in 2017 was <b>{{ major_popularity }},000</b> with <b>{{ major_male }} male</b> and <b>{{ major_female }} female</b>.
+  </ul>
+</section>
+
+<section>
+  <h2>Institutions</h2>
+  <ul style="list-style-type:none;">
+    Of the Public, Private for-profit, and Private non-profit institutions in the U.S., the institution
+    with the most degrees conferred for <b>{{ major }}</b> majors in 2017 was <b>{{ popularity_of_institution }}</b> by
+    <b>{{ major_type_of_institution }}s</b>.
+</section>
+
+<script>
+    function displaySubMenu() {
+        document.getElementById("dummylink").style.display = "none";
+        document.getElementById("dropdown-content").style.display = "block";
+    }
+    function ditchSubMenu() {
+       document.getElementById("dropdown-content").style.display = "none";
+    }
+</script>
+
+</body>
+
+</html>
